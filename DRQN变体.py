@@ -24,7 +24,7 @@ EPS_MIN = 0.0001
 EPS_DECAY_ratio = 0.00004
 LearnStep = 0
 episodes = 30
-SEQ_LENGTH = 5
+SEQ_LENGTH = 72
 
 # Setup the environment and device
 env = model.model()
@@ -80,7 +80,7 @@ class Net(nn.Module):
         return self.fc(x)
 
 
-class choose_tchws:
+class Agent:
     def __init__(self, STATE_SIZE, ACTION_SIZE, action_space, seq_length=SEQ_LENGTH):
         self.STATE_SIZE = STATE_SIZE
         self.ACTION_SIZE = ACTION_SIZE
@@ -184,16 +184,16 @@ class choose_tchws:
             print(f"New best model saved with reward: {reward}")
 
 
-class DQN:
+class DRQN:
     def __init__(self):
         self.action = np.load("action_all.npy", allow_pickle=True)
 
     def print_model_parameters(self):
-        Agent = choose_tchws(3, 25410, self.action)
+        Agent = Agent(3, 25410, self.action)
         print(Agent.policy_net)
 
     def train(self):
-        Agent = choose_tchws(3, 25410, self.action, seq_length=SEQ_LENGTH)  # Create instance of choose_tchws
+        Agent = Agent(3, 25410, self.action, seq_length=SEQ_LENGTH)  # Create instance of choose_tchws
         rewards_list = []
 
         with open("DDQN+DRQN-5-001.txt", "a") as file:
