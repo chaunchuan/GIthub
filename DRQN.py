@@ -36,7 +36,8 @@ class Q_net(nn.Module):
         self.hidden_space = 128
         self.state_space = state_space
         self.action_space = action_space
-
+                     
+        #这里的第一层全连接层可以去掉，作用在于降低输入维度
         self.Linear1 = nn.Linear(self.state_space, self.hidden_space)
         self.lstm = nn.LSTM(self.hidden_space, self.hidden_space, batch_first=True)
         self.Linear2 = nn.Linear(self.hidden_space, self.action_space)
@@ -250,7 +251,7 @@ if __name__ == "__main__":
     min_epi_num=8000
 
 
-    epsilon = 1.5
+    epsilon = 1
     eps_end = 0.001
     eps_decay = 0.99992
 # Train接下来的部分将是用于训练模型的代码
